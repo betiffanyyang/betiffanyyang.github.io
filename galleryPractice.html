@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inria+Sans:wght@400;700&display=swap">
+  <title>SpeakSquid</title>
+</head>
+<style>
+  
+  body {
+    font-family: "Inria Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navigation-bar {
+    width: 80px;
+    min-height: calc(100vh - 40px);
+    background-color: #f0f0f0;
+    padding: 20px 0;
+    box-sizing: border-box;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    z-index: 10;
+  }
+
+  .profile-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin-top: 50px;
+  }
+
+  .nav-tabs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    z-index: 10;
+  }
+
+  .nav-tabs a {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    text-decoration: none;
+    transition: width 0.3s, height 0.3s;
+  }
+  .nav-tabs a img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .home {
+    margin-bottom: 80px;
+    margin-top: 100px;
+  }
+
+  .category {
+    margin-bottom: 30px;
+  }
+
+  .video {
+    margin-top: 360px;
+    padding: 10px;
+  }
+
+  .home:hover img {
+    content: url('Home Icon Hover (1).png');
+  }
+
+  .category:hover img {
+    content: url('Gallery Hover (1).png');
+  }
+
+  .video:hover img {
+    content: url('Record_Hover (1).png');
+  }
+
+  .logo-image {
+        position: fixed;
+        top: 0px;
+        left: 50%;
+        bottom: 30px;
+        transform: translateX(-50%);
+        width: 200px; 
+        height: auto;
+    }
+
+    *, *:before, *:after {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    .scenario {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      opacity: 0;
+      transition: opacity 0.1s ease-in-out;
+    }
+
+    .loaded.scenario {
+      opacity: 1;
+    }
+
+    .scenario--status {
+      position: absolute;
+      top: 50%;
+      margin-top: -30px;
+      z-index: 2;
+      width: 100%;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .scenario--status i {
+      font-size: 100px;
+      opacity: 0;
+      transform: scale(0.3);
+      transition: all 0.2s ease-in-out;
+      position: absolute;
+      width: 100px;
+      margin-left: -50px;
+    }
+
+    .scenario_love .fa-heart {
+      opacity: 0.7;
+      transform: scale(1);
+    }
+
+    .scenario_nope .fa-remove {
+      opacity: 0.7;
+      transform: scale(1);
+    }
+
+    .scenario--cards {
+        flex-grow: 1;
+        padding-top: 200px; 
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start; 
+    }
+
+    .scenario--card {
+      display: inline-block;
+      width: 90vw;
+      max-width: 400px;
+      height: 70vh;
+      background: #FFFFFF;
+      padding-bottom: 40px;
+      border-radius: 8px;
+      overflow: hidden;
+      position: absolute;
+      will-change: transform;
+      transition: all 0.3s ease-in-out;
+      cursor: -webkit-grab;
+      cursor: -moz-grab;
+      cursor: grab;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .moving.scenario--card {
+      transition: none;
+      cursor: -webkit-grabbing;
+      cursor: -moz-grabbing;
+      cursor: grabbing;
+    }
+
+    .scenario--card img {
+      max-width: 100%;
+      pointer-events: none;
+    }
+
+    .scenario--card h3 {
+      margin-top: 32px;
+      font-size: 32px;
+      padding: 0 16px;
+      pointer-events: none;
+    }
+
+    .scenario--card p {
+      margin-top: 24px;
+      font-size: 20px;
+      padding: 0 16px;
+      pointer-events: none;
+    }
+
+    .scenario--buttons {
+      flex: 0 0 100px;
+      text-align: center;
+      padding-top: 20px;
+    }
+
+    .scenario--buttons button {
+      border-radius: 50%;
+      line-height: 60px;
+      width: 60px;
+      border: 0;
+      background: #FFFFFF;
+      display: inline-block;
+      margin: 0 8px;
+    }
+
+    .scenario--buttons button:focus {
+      outline: 0;
+      border-radius: 10px;
+    }
+
+    .scenario--buttons i {
+      font-size: 32px;
+      vertical-align: middle;
+    }
+
+    .fa-heart {
+      color: #FFACE4;
+    }
+
+    .fa-remove {
+      color: #CDD6DD;
+    }
+
+    .scenario--card a {
+        text-decoration: none; 
+        color: black;
+    }
+
+    .scenario--card button {
+        width: 100px; 
+        height: 50px; 
+        border-radius: 8px; 
+        border: 0;
+        background: #7AEED9; 
+        display: inline-block;
+        margin: 0 8px;
+        margin-top: 30px;
+        font-family: "Inria Sans", sans-serif; 
+        color: rgb(0, 0, 0); 
+        font-size: 16px; 
+        text-align: center; 
+    }
+
+    #toggle-switch {
+      position: fixed;
+      top: 20px;
+      left: 120px; 
+      z-index: 3;
+    }
+
+    #toggle-switch {
+      appearance: none;
+      width: 50px;
+      height: 25px;
+      background-color: #ccc;
+      border-radius: 25px;
+      outline: none;
+      transition: background-color 0.3s;
+      cursor: pointer;
+    }
+
+    #toggle-switch:checked {
+      background-color: #7AEED9;
+    }
+
+    #toggle-switch::before {
+      content: '';
+      position: absolute;
+      width: 21px;
+      height: 21px;
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+      background-color: #fff;
+      transition: transform 0.3s;
+    }
+
+    #toggle-switch:checked::before {
+      transform: translateX(25px);
+    }
+
+    .scroll-container {
+      height: calc(100% - 130px); 
+      overflow-y: auto;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; 
+      padding-top: -200px; 
+      padding-bottom: 30px;
+      z-index: 5; 
+    }
+
+    .gallery-container {
+      max-width: calc(100% - 120px); 
+      margin-left: 120px;
+      margin-top: 40px;
+      z-index: 10;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 300px); 
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .gallery-box {
+      width: 300px; 
+      height: 500px;
+      background-color: #f0f0f0;
+      border-radius: 8px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-box:hover {
+      transform: scale(1.1); 
+    }
+
+    .gallery-box img {
+      width: 80%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+      margin: 10px auto 0;
+    }
+
+    .gallery-box h3 {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+
+    .gallery-box p {
+      margin-top: 5px;
+      font-size: 14px;
+    }
+
+    .gallery-box button {
+      margin-top: 15px;
+      background-color: #7AEED9;
+      color: #000000;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-family: "Inria Sans", sans-serif; 
+    }
+
+    .gallery-box button a {
+      text-decoration: none; 
+      color: #000000; 
+    }
+
+</style>
+
+
+<body>
+  <div class="navigation-bar">
+    <div class="profile-icon">
+      <!-- Put your profile icon here -->
+    </div>
+    <div class="nav-tabs">
+      <div class="home">
+        <a href="index.html"><img src="Home Icon (1).png" alt="Home"></a>
+      </div>
+      <div class="category">
+        <a href="galleryPractice.html"><img src="Gallery (1).png" alt="Category"></a>
+      </div> 
+      <div class="video">
+        <a href="selfPractice.html"><img src="Record Icon (1).png" alt="Video" style="width: 50px; height: 50px;"> </a>
+      </div>
+    </div>
+  </div>
+
+  <img src="SpeakSquid Logo (1).png" alt="Logo Image" class="logo-image">
+  <div class="scenario">
+    <div class="scenario--status">
+      <i class="fa fa-remove"></i>
+      <i class="fa fa-heart"></i>
+    </div>
+  
+    <div class="scenario--cards">
+      <div class="scenario--card">
+        <img src="waitress (1).png">
+        <h3>Ordering at a Restaurant</h3>
+        <p>Practice talking to a waiter and ordering food at a restaurant!</p>
+        <button><a href="practiceWaitress.html">Practice This</a></button>
+        <!-- where it says practice.html is where you replace it for each indiviual web page (rn its all practice.html cause i only made 1) -->
+      </div>
+      <div class="scenario--card">
+        <img src="directions.png">
+        <h3>Ask for Directions</h3>
+        <p>Practice asking for directions, whether you are lost, or looking for a place to go!</p>
+        <button><a href="practiceDirections.html">Practice This</a></button>
+      </div>
+      <div class="scenario--card">
+        <img src="cashier (1).png">
+        <h3>Checking out Groceries</h3>
+        <p>Practice your produce vocabulary by checking out your groceries at a grocery store!</p>
+        <button><a href="practiceGroceries.html">Practice This</a></button>
+
+      </div>
+      <div class="scenario--card">
+        <img src="blindDate (1).png">
+        <h3>Blind Date</h3>
+        <p>Practice having small talk with someone, just like on a blind date!</p>
+        <button><a href="practiceDate.html">Practice This</a></button>
+      </div>
+      <div class="scenario--card">
+        <img src="Doctor (1).png">
+        <h3>Doctor's Appointment</h3>
+        <p>Practice describing your discomfort when visiting a doctor!</p>
+        <button><a href="practiceDoctor.html">Practice This</a></button>
+      </div>
+
+      <div class="scenario--card">
+        <img src="Airport (1).png">
+        <h3>Going to the Airport</h3>
+        <p>Practice going through the airport to prepare for your big trip!</p>
+        <button><a href="practiceAirport.html">Practice This</a></button>
+      </div>
+
+      <div class="scenario--card">
+        <img src="Job Interview (1).png">
+        <h3>Job Interview</h3>
+        <p> Practice introducing yourself confidently and expressing why you are the right candidate for the job!</p>
+        <button><a href="practiceJob.html">Practice This</a></button>
+      </div>
+
+      <div class="scenario--card">
+        <img src="Hotel (1).png">
+        <h3>Hotel</h3>
+        <p>Practice checking into a hotel, ordering room service in the hotel, asking about the menu options, and more!</p>
+        <button><a href="practiceHotel.html">Practice This</a></button>
+      </div>
+
+      <div class="scenario--card">
+        <img src="Bank (1).png">
+        <h3>Bank</h3>
+        <p>Practice handling a transaction at the bank, such as depositing money or withdrawing cash!</p>
+        <button><a href="practiceBank.html">Practice This</a></button>
+      </div>
+      <!-- Repeats Here to be QUIRKY -->
+      <div class="scenario--card">
+        <img src="waitress (1).png">
+        <h3>Ordering at a Restaurant</h3>
+        <p>Practice talking to a waiter and ordering food at a restaurant!</p>
+        <button><a href="practiceWaitress.html">Practice This</a></button>
+        <!-- where it says practice.html is where you replace it for each indiviual web page (rn its all practice.html cause i only made 1) -->
+      </div>
+      <div class="scenario--card">
+        <img src="directions.png">
+        <h3>Ask for Directions</h3>
+        <p>Practice asking for directions, whether you are lost, or looking for a place to go!</p>
+        <button><a href="practiceDirections.html">Practice This</a></button>
+      </div>
+      <div class="scenario--card">
+        <img src="cashier (1).png">
+        <h3>Checking out Groceries</h3>
+        <p>Practice your produce vocabulary by checking out your groceries at a grocery store!</p>
+        <button><a href="practiceGroceries.html">Practice This</a></button>
+
+      </div>
+      <div class="scenario--card">
+        <img src="blindDate (1).png">
+        <h3>Blind Date</h3>
+        <p>Practice having small talk with someone, just like on a blind date!</p>
+        <button><a href="practiceDate.html">Practice This</a></button>
+      </div>
+      <div class="scenario--card">
+        <img src="Doctor (1).png">
+        <h3>Doctor's Appointment</h3>
+        <p>Practice describing your discomfort when visiting a doctor!</p>
+        <button><a href="practiceDoctor.html">Practice This</a></button>
+      </div>
+
+      <div class="scenario--card">
+        <img src="Airport (1).png">
+        <h3>Going to the Airport</h3>
+        <p>Practice going through the airport to prepare for your big trip!</p>
+        <button><a href="practiceAirport.html">Practice This</a></button>
+      </div>
+
+      <div class="scenario--card">
+        <img src="Job Interview (1).png">
+        <h3>Job Interview</h3>
+        <p> Practice introducing yourself confidently and expressing why you are the right candidate for the job!</p>
+        <button><a href="practiceJob.html">Practice This</a></button>
+      </div>
+
+      <div class="scenario--card">
+        <img src="Hotel (1).png">
+        <h3>Hotel</h3>
+        <p>Practice checking into a hotel, ordering room service in the hotel, asking about the menu options, and more!</p>
+        <button><a href="practiceHotel.html">Practice This</a></button>
+      </div>
+
+      <div class="scenario--card">
+        <img src="Bank (1).png">
+        <h3>Bank</h3>
+        <p>Practice handling a transaction at the bank, such as depositing money or withdrawing cash!</p>
+        <button><a href="practiceBank.html">Practice This</a></button>
+      </div>
+  
+    <div class="scenario--buttons">
+      <button id="nope"><i class="fa fa-remove"></i></button>
+      <button id="love"><i class="fa fa-heart"></i></button>
+    </div>
+  </div>
+
+  <input type="checkbox" id="toggle-switch">
+
+  <div class="scroll-container">
+    <div class="gallery-container" style="display: none;">
+      <div class="gallery">
+        <div class="gallery-box">
+          <img src="waitress (1).png" alt="Image 1">
+          <h3>Ordering at a Restaurant</h3>
+          <p>Practice talking to a waiter and ordering food at a restaurant!</p>
+          <button><a href="practiceWaitress.html">Practice This</a></button>
+        </div>
+        <div class="gallery-box">
+          <img src="directions.png" alt="Image 2">
+          <h3>Ask for Directions</h3>
+          <p>Practice asking for directions, whether you are lost, or looking for a place to go!</p>
+          <button><a href="practiceDirections.html">Practice This</a></button>
+        </div>
+        <div class="gallery-box">
+          <img src="cashier (1).png" alt="Image 2">
+          <h3>Checking out Groceries</h3>
+          <p>Practice your produce vocabulary by checking out your groceries at a grocery store!</p>
+          <button><a href="practiceGroceries.html">Practice This</a></button>
+        </div>
+        <div class="gallery-box">
+          <img src="blindDate (1).png" alt="Image 2">
+          <h3>Blind Date</h3>
+          <p>Practice having small talk with someone, just like on a blind date!</p>
+          <button><a href="practiceDate.html">Practice This</a></button>
+        </div>
+        <div class="gallery-box">
+          <img src="Doctor (1).png" alt="Image 2">
+          <h3>Doctor's Appointment</h3>
+          <p>Practice describing your discomfort when visiting a doctor!</p>
+          <button><a href="practiceDoctor.html">Practice This</a></button>
+        </div>
+        <div class="gallery-box">
+          <img src="Airport (1).png" alt="Image 2">
+          <h3>Going to the Airport</h3>
+          <p>Practice going through the airport to prepare for your big trip!</p>
+          <button><a href="practiceAirport.html">Practice This</a></button>
+        </div>
+        <div class="gallery-box">
+          <img src="Job Interview (1).png" alt="Image 2">
+          <h3>Job Interview</h3>
+          <p>Practice introducing yourself confidently and expressing why you are the right candidate for the job!</p>
+          <button><a href="practiceJob.html">Practice This</a></button>
+        </div>
+        <div class="gallery-box">
+          <img src="Hotel (1).png" alt="Image 2">
+          <h3>Hotel</h3>
+          <p>Practice checking into a hotel, ordering room service in the hotel, asking about the menu options, and more!</p>
+          <button><a href="practiceHotel.html">Practice This</a></button>
+        </div>
+        <div class="gallery-box">
+          <img src="Bank (1).png" alt="Image 2">
+          <h3>Bank</h3>
+          <p>Practice handling a transaction at the bank, such as depositing money or withdrawing cash!</p>
+          <button><a href="practiceBank.html">Practice This</a></button>
+        </div>
+    </div>
+  </div>
+</div>
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+  <script>
+    'use strict';
+
+    var scenarioContainer = document.querySelector('.scenario');
+    var allCards = document.querySelectorAll('.scenario--card');
+    var nope = document.getElementById('nope');
+    var love = document.getElementById('love');
+
+    function initCards(card, index) {
+      var newCards = document.querySelectorAll('.scenario--card:not(.removed)');
+
+      newCards.forEach(function (card, index) {
+        card.style.zIndex = allCards.length - index;
+        card.style.transform = 'scale(' + (20 - index) / 20 + ') translateY(-' + 30 * index + 'px)';
+        card.style.opacity = (10 - index) / 10;
+      });
+
+      scenarioContainer.classList.add('loaded');
+    }
+
+    initCards();
+
+    allCards.forEach(function (el) {
+      var hammertime = new Hammer(el);
+
+      hammertime.on('pan', function (event) {
+        el.classList.add('moving');
+      });
+
+      hammertime.on('pan', function (event) {
+        if (event.deltaX === 0) return;
+        if (event.center.x === 0 && event.center.y === 0) return;
+
+        scenarioContainer.classList.toggle('scenario_love', event.deltaX > 0);
+        scenarioContainer.classList.toggle('scenario_nope', event.deltaX < 0);
+
+        var xMulti = event.deltaX * 0.03;
+        var yMulti = event.deltaY / 80;
+        var rotate = xMulti * yMulti;
+
+        event.target.style.transform = 'translate(' + event.deltaX + 'px, ' + event.deltaY + 'px) rotate(' + rotate + 'deg)';
+      });
+
+      hammertime.on('panend', function (event) {
+        el.classList.remove('moving');
+        scenarioContainer.classList.remove('scenario_love');
+        scenarioContainer.classList.remove('scenario_nope');
+
+        var moveOutWidth = document.body.clientWidth;
+        var keep = Math.abs(event.deltaX) < 80 || Math.abs(event.velocityX) < 0.5;
+
+        event.target.classList.toggle('removed', !keep);
+
+        if (keep) {
+          event.target.style.transform = '';
+        } else {
+          var endX = Math.max(Math.abs(event.velocityX) * moveOutWidth, moveOutWidth);
+          var toX = event.deltaX > 0 ? endX : -endX;
+          var endY = Math.abs(event.velocityY) * moveOutWidth;
+          var toY = event.deltaY > 0 ? endY : -endY;
+          var xMulti = event.deltaX * 0.03;
+          var yMulti = event.deltaY / 80;
+          var rotate = xMulti * yMulti;
+
+          event.target.style.transform = 'translate(' + toX + 'px, ' + (toY + event.deltaY) + 'px) rotate(' + rotate + 'deg)';
+          initCards();
+        }
+      });
+    });
+
+    function createButtonListener(love) {
+      return function (event) {
+        var cards = document.querySelectorAll('.scenario--card:not(.removed)');
+        var moveOutWidth = document.body.clientWidth * 1.5;
+
+        if (!cards.length) return false;
+
+        var card = cards[0];
+
+        card.classList.add('removed');
+
+        if (love) {
+          card.style.transform = 'translate(' + moveOutWidth + 'px, -100px) rotate(-30deg)';
+        } else {
+          card.style.transform = 'translate(-' + moveOutWidth + 'px, -100px) rotate(30deg)';
+        }
+
+        initCards();
+
+        event.preventDefault();
+      };
+    }
+
+    var nopeListener = createButtonListener(false);
+    var loveListener = createButtonListener(true);
+
+    nope.addEventListener('click', nopeListener);
+    love.addEventListener('click', loveListener);
+
+    var toggleSwitch = document.getElementById('toggle-switch');
+    var allCards = document.querySelectorAll('.scenario--card');
+    var galleryContainer = document.querySelector('.gallery-container');
+
+    toggleSwitch.addEventListener('change', function () {
+      if (toggleSwitch.checked) {
+        // Hide all the scenario cards
+        allCards.forEach(function (card) {
+          card.style.display = 'none';
+        });
+        // Show the gallery
+        galleryContainer.style.display = 'flex';
+      } else {
+        // Show all the scenario cards
+        allCards.forEach(function (card) {
+          card.style.display = 'block';
+        });
+        // Hide the gallery
+        galleryContainer.style.display = 'none';
+      }
+    });
+
+  </script>
+
+
+</body>
+
+</html>

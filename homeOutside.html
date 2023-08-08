@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inria Sans', sans-serif;
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: white;
+        color: #000;
+        height: 50px;
+        width: 100%;
+        padding: 30px 20px;
+        font-family: 'Inria Sans', sans-serif;
+        z-index: 1000; 
+    }
+
+    .logo img {
+        width: 220px;
+    }
+
+    .tabs {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        justify-content: flex-end;
+        flex-grow: 1;
+    }
+
+    .tabs li {
+        margin-left: 80px;
+        position: relative; 
+    }
+
+    .tabs li a {
+        text-decoration: none;
+        color: #000000;
+        padding: 5px 10px;
+    }
+
+    .tabs li a:before {
+        content: ""; 
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -10px; 
+        height: 2px;
+        background-color: #50FFDF;
+        border-radius: 2px;
+        visibility: hidden;
+        transform: scaleX(0);
+        transition: all 0.2s ease-in-out;
+    }
+
+    .tabs li a:hover:before {
+        visibility: visible;
+        transform: scaleX(1);
+    }
+
+    .logout-btn {
+        background-color: #50FFDF;
+        color: #000000;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        margin-left: 50px; 
+        margin-right: 50px;
+        border-radius: 10px;
+        font-family: 'Inria Sans', sans-serif;
+    }
+
+    .logout-btn:hover {
+        background-color: #959595;
+    }
+
+    
+    @media (max-width: 768px) {
+        nav {
+            padding: 30px 10px; 
+        }
+        .tabs li {
+            margin-left: 15px; 
+        }
+        .logout-btn {
+            margin-left: 5px; 
+        }
+    }
+
+
+  @media (max-width: 768px) {
+    .text-field {
+        width: calc(100% - 20px); 
+        padding: 0 10px; 
+        margin-bottom: 15px; 
+    }
+}
+
+
+@keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 80px; 
+    }
+  }
+
+  @keyframes blink-caret {
+    from,
+    to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: #333;
+    }
+  }
+
+  .content {
+  display: flex;
+  margin-top: 550px;
+}
+
+  .content-column {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+  .typing-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-column {
+  position: absolute;
+  top: 200px;
+  right: 260px;
+  display: flex;
+  align-items: center;
+}
+
+  .resize-image {
+    max-width: 90%; 
+    max-height: 100vh; 
+}
+
+
+@media screen and (max-width: 768px) {
+  .image-column {
+    right: 20px; 
+  }
+}
+.typing-text-container {
+    position: absolute;
+    top: 550px;
+    left: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .typing-text {
+    font-size: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 1.5s steps(20, end), blink-caret 0.5s step-end infinite;
+  }
+
+  .additional-text-container {
+    position: absolute;
+    top: 690px;
+    left: 400px;
+    right: 650px;
+    font-size: 16px;
+  }
+
+  .additional-text {
+    font-size: 16px;
+  }
+
+  .try-out-button {
+    margin-top: 30px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #7AEED9;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 15px 25px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: "Inria Sans", sans-serif;
+  }
+
+  .try-out-button:hover {
+    background-color: #66C2B9;
+  }
+
+  .additional-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 500px; 
+    margin-left: 150px;
+    margin-right: 150px;
+    height: 900px;
+    background-color: #7AEED9;
+    padding: 20px;
+    text-align: center;
+}
+
+.box-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: calc(50% - 0px);
+    margin-bottom: 30px;
+    text-align: center;
+    box-sizing: border-box; 
+}
+
+.box img {
+    max-width: 10%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.box h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #2B9F8A;
+}
+
+.box p {
+    font-size: 17px;
+    color: #777;
+}
+
+.functionalities-box {
+    background-color: #ffffff;
+    padding: 100px;
+    border-radius: 1px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    text-align: center;
+    width: calc(100% - 500px)
+}
+
+.functionalities-box h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeakSquid</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="4.png" alt="Logo">
+        </div>
+        <ul class="tabs">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+        <button class="logout-btn" onclick="redirectToRegister()">Register</button>
+    </nav>
+
+    <div class="content">
+        <div class="content-column">
+          <div class="typing-text-container">
+            <div class="typing-text">
+              <span id="typewriter"></span>
+            </div>
+          </div>
+          <div class="additional-text-container">
+            <div class="additional-text">
+              <p>Welcome to SpeakSquid</p>
+              <p>Where you can practice the most important part of learning a language--speaking.</p>
+              <p>SpeakSquid uses AI to generate conversations from the real world that you can practice from the comfort of your home.</p>
+            </div>
+            <button class="try-out-button" onclick="goToScenarios()">Try Out</button>
+          </div>
+        </div>
+        <div class="image-column">
+          <img src="Home Page Image.png" alt="Your Image" class="resize-image">
+        </div>
+      </div>
+      
+      <div class="additional-section">
+        <div class="functionalities-box">
+            <h1>Functionalities</h1>
+            <div class="box-container">
+                <div class="box">
+                    <img src="voice.png" alt="Image 1">
+                    <h3>Speaking Practice</h3>
+                    <p>Currently available in 57 languages, practice speaking with AI to enhance communication skills in the langauge you are learning</p>
+                </div>
+                <div class="box">
+                    <img src="growth.png" alt="Image 2">
+                    <h3>Track Progress</h3>
+                    <p>SpeakSquid has a video feature that enables you to record and track your progress overtime and motivate you to continue</p>
+                </div>
+            </div>
+            <div class="box-container">
+                <div class="box">
+                    <img src="chatting.png" alt="Image 3">
+                    <h3>AI Conversations</h3>
+                    <p>Powered by AI, SpeakSquid is able to respond with custom prompts to allow personalization of practice</p>
+                </div>
+                <div class="box">
+                    <img src="window.png" alt="Image 4">
+                    <h3>Corrections and Translations</h3>
+                    <p>Transcriptions are provided to enhance the learning experience, including: correcting grammar, translation, and native pronounciation</p>
+                </div>
+            </div>
+        </div>
+    </div>
+      
+</div>
+
+<script>
+    const sentences = ["Hello", "مرحباً", "բարև", "Salam", "прывітанне", "Zdravo", "Здравейте",
+      "Hola", "你好", "Bok", "Ahoj", "Hej", "Tere", "Hei", "Bonjour", "Ola",
+      "Hallo", "Γειά σας", "שָׁלוֹם", "नमस्ते", "Helló", "Halló", "Halo",
+      "Ciao", "こんにちは", "ಹಲೋ", "Сәлеметсіз бе", "안녕하세요", "Sveiki", "Labas",
+      "Здраво", "Helo", "नमस्कार", "Kia ora", "नमस्कार", "Hei", "سلام",
+      "Cześć", "Olá", "Bună ziua", "Привет", "Здраво", "Ahoj", "Pozdravljeni",
+      "Hola", "Hujambo", "Hej", "Kamusta", "வணக்கம்", "สวัสดี", "Merhaba",
+      "Привіт", "ہیلو", "Xin chào", "Helo"];
+    const typewriter = document.getElementById("typewriter");
+
+    let currentSentenceIndex = 0;
+    let isErasing = false;
+
+    typewriter.textContent = "";
+
+    function typewriterEffect() {
+      const sentence = sentences[currentSentenceIndex];
+      const currentText = typewriter.textContent;
+
+      if (!isErasing) {
+        typewriter.textContent = sentence.substring(0, currentText.length + 1);
+
+        if (currentText === sentence) {
+          isErasing = true;
+          setTimeout(typewriterEffect, 1500); 
+        } else {
+          setTimeout(typewriterEffect, 100);
+        }
+      } else {
+        typewriter.textContent = sentence.substring(0, currentText.length - 1);
+
+        if (currentText === "") {
+          isErasing = false;
+          currentSentenceIndex = (currentSentenceIndex + 1) % sentences.length;
+        }
+
+        setTimeout(typewriterEffect, 50); 
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      typewriterEffect();
+    });
+
+    function redirectToRegister() {
+        window.location.href = "register.html";
+    }
+
+</script>
+
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+
+</body>
+</html>

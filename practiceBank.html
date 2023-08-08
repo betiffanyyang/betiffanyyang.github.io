@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inria+Sans:wght@400;700&display=swap">
+  <title>SpeakSquid</title>
+</head>
+<style>
+  body {
+    font-family: "Inria Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navigation-bar {
+    width: 80px;
+    min-height: calc(100vh - 40px);
+    background-color: #f0f0f0;
+    padding: 20px 0;
+    box-sizing: border-box;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+  }
+
+  .profile-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin-top: 50px;
+  }
+
+  .nav-tabs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+  }
+
+  .nav-tabs a {
+    display: flex; /* Use flexbox to center the content */
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    text-decoration: none;
+    transition: width 0.3s, height 0.3s;
+  }
+  .nav-tabs a img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .home {
+    margin-bottom: 80px;
+    margin-top: 100px;
+  }
+
+  .category {
+    margin-bottom: 30px;
+  }
+
+  .video {
+    margin-top: 360px;
+    padding: 10px;
+  }
+
+  .home:hover img {
+    content: url('Home Icon Hover (1).png');
+  }
+
+  .category:hover img {
+    content: url('Gallery Hover (1).png');
+  }
+
+  .video:hover img {
+    content: url('Record_Hover (1).png');
+  }
+
+  .logo-image {
+        position: fixed;
+        top: 0px;
+        left: 50%;
+        bottom: 30px;
+        transform: translateX(-50%);
+        width: 200px; /* Adjust the width as needed */
+        height: auto;
+    }
+
+  
+  .custom-box {
+    width: calc(100vw - 600px); 
+    height: 700px;
+    background-color: #E5E5E5;
+    margin: 100px auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+  }
+
+  .inner-box1 {
+    width: calc(50% - 5px); 
+    height: 98%;
+    background-color: #c1c1c1;
+    border-radius: 10px;
+  }
+
+  .inner-box2 {
+    width: calc(50% - 5px); 
+    height: 98%;
+    background-color: #c1c1c1;
+    border-radius: 10px;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+  }
+
+  #video-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%; 
+      height: 100%;
+      background-color: #c7c7c7; 
+      border-radius: 10px;
+    }
+
+    video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+        border-radius: 10px;
+    }
+
+    button {
+        margin-top: -60px;
+        margin-left: 30px;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-family: "Inria Sans", sans-serif;
+        background-color: #50FFDF;
+        border-width: 0px;
+        border-radius: 10px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+    }
+
+    .transcript-button {
+      width: 20px;
+      height: 20px;
+      background-color: transparent;
+    }
+
+    .transcript-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .form-row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+      margin-top: 150px;
+    }
+
+    #language-youre-learning {
+      width: 300px;
+      height: 40px;
+      border: 1px solid black;
+      border-radius: 10px;
+      margin-left: 5px;
+    }
+
+    #video-container {
+      position: relative;
+    }
+</style>
+
+
+<body>
+    <div class="navigation-bar">
+        <div class="profile-icon">
+          <!-- Put your profile icon here -->
+        </div>
+        <div class="nav-tabs">
+          <div class="home">
+            <a href="index.html"><img src="Home Icon (1).png" alt="Home"></a>
+          </div>
+          <div class="category">
+            <a href="galleryPractice.html"><img src="Gallery (1).png" alt="Category"></a>
+          </div>
+          <div class="video">
+            <a href="selfPractice.html"><img src="Record Icon (1).png" alt="Video" style="width: 50px; height: 50px;"> </a>
+          </div>
+        </div>
+      </div>
+
+  <!-- New box and inner boxes -->
+  <div class="form-row">
+    <label for="language-youre-learning">Language:  </label>
+    <select id="language-youre-learning" name="language-youre-learning">
+      <option value="please-select">*Please select the language you are learning</option>
+      <option value="afrikaans">Afrikaans</option>
+      <option value="arabic">Arabic</option>
+      <option value="armenian">Armenian</option>
+      <option value="azerbaijani">Azerbaijani</option>
+      <option value="belarusian">Belarusian</option>
+      <option value="bosnian">Bosnian</option>
+      <option value="bulgarian">Bulgarian</option>
+      <option value="catalan">Catalan</option>
+      <option value="chinese">Chinese</option>
+      <option value="croatian">Croatian</option>
+      <option value="czech">Czech</option>
+      <option value="danish">Danish</option>
+      <option value="dutch">Dutch</option>
+      <option value="english">English</option>
+      <option value="estonian">Estonian</option>
+      <option value="finnish">Finnish</option>
+      <option value="french">French</option>
+      <option value="galician">Galician</option>
+      <option value="german">German</option>
+      <option value="greek">Greek</option>
+      <option value="hebrew">Hebrew</option>
+      <option value="hindi">Hindi</option>
+      <option value="hungarian">Hungarian</option>
+      <option value="icelandic">Icelandic</option>
+      <option value="indonesian">Indonesian</option>
+      <option value="italian">Italian</option>
+      <option value="japanese">Japanese</option>
+      <option value="kannada">Kannada</option>
+      <option value="kazakh">Kazakh</option>
+      <option value="korean">Korean</option>
+      <option value="latvian">Latvian</option>
+      <option value="lithuanian">Lithuanian</option>
+      <option value="macedonian">Macedonian</option>
+      <option value="malay">Malay</option>
+      <option value="marathi">Marathi</option>
+      <option value="maori">Maori</option>
+      <option value="nepali">Nepali</option>
+      <option value="norwegian">Norwegian</option>
+      <option value="persian">Persian</option>
+      <option value="polish">Polish</option>
+      <option value="portuguese">Portuguese</option>
+      <option value="romanian">Romanian</option>
+      <option value="russian">Russian</option>
+      <option value="serbian">Serbian</option>
+      <option value="slovak">Slovak</option>
+      <option value="slovenian">Slovenian</option>
+      <option value="spanish">Spanish</option>
+      <option value="swahili">Swahili</option>
+      <option value="swedish">Swedish</option>
+      <option value="tagalog">Tagalog</option>
+      <option value="tamil">Tamil</option>
+      <option value="thai">Thai</option>
+      <option value="turkish">Turkish</option>
+      <option value="ukrainian">Ukrainian</option>
+      <option value="urdu">Urdu</option>
+      <option value="vietnamese">Vietnamese</option>
+      <option value="welsh">Welsh</option>
+
+    </select>
+</div>
+  <div class="custom-box">
+    <div class="inner-box1">
+      <img src="practiceBankImage.png" alt="Full Image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+    </div>
+    <div class="inner-box2">
+        <div id="video-container">
+            <video id="video" autoplay muted></video>
+            <div id="message-container" style="position: absolute; top: 20px; right: 20px; max-height: 300px; max-width: 300px; overflow-y: auto;"></div>
+
+            <video id="recordedVideo" style="display: none;" controls autoplay></video>
+        </div>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <button id="startStopButton">Start Recording</button>
+    <button id="downloadButton" disabled>Download Video</button>
+    <button id="start">Start Audio recording</button>
+    <button id="stop" disabled>Stop Audio recording</button>
+    <button id="showTranscriptButton" onclick="showTranscript()">Show Transcript</button>
+  </div>
+  <div class="transcript-container">
+    <div id="transcript" style="width: 70%; display: none; margin-top: 7px; border: 1px solid #7AEED9; border-radius: 10px; background-color: #F0F0F0; padding: 10px;"></div>
+  </div>
+  <h1 style="color: white">SpeakSquid</h1>
+
+<img src="4.png" alt="Logo Image" class="logo-image">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+<script>
+  'use strict';
+
+  var scenarioContainer = document.querySelector('.scenario');
+  var allCards = document.querySelectorAll('.scenario--card');
+  var nope = document.getElementById('nope');
+  var love = document.getElementById('love');
+
+  function initCards(card, index) {
+    var newCards = document.querySelectorAll('.scenario--card:not(.removed)');
+
+    newCards.forEach(function (card, index) {
+      card.style.zIndex = allCards.length - index;
+      card.style.transform = 'scale(' + (20 - index) / 20 + ') translateY(-' + 30 * index + 'px)';
+      card.style.opacity = (10 - index) / 10;
+    });
+
+    scenarioContainer.classList.add('loaded');
+  }
+
+  initCards();
+
+  allCards.forEach(function (el) {
+    var hammertime = new Hammer(el);
+
+    hammertime.on('pan', function (event) {
+      el.classList.add('moving');
+    });
+
+    hammertime.on('pan', function (event) {
+      if (event.deltaX === 0) return;
+      if (event.center.x === 0 && event.center.y === 0) return;
+
+      scenarioContainer.classList.toggle('scenario_love', event.deltaX > 0);
+      scenarioContainer.classList.toggle('scenario_nope', event.deltaX < 0);
+
+      var xMulti = event.deltaX * 0.03;
+      var yMulti = event.deltaY / 80;
+      var rotate = xMulti * yMulti;
+
+      event.target.style.transform = 'translate(' + event.deltaX + 'px, ' + event.deltaY + 'px) rotate(' + rotate + 'deg)';
+    });
+
+    hammertime.on('panend', function (event) {
+      el.classList.remove('moving');
+      scenarioContainer.classList.remove('scenario_love');
+      scenarioContainer.classList.remove('scenario_nope');
+
+      var moveOutWidth = document.body.clientWidth;
+      var keep = Math.abs(event.deltaX) < 80 || Math.abs(event.velocityX) < 0.5;
+
+      event.target.classList.toggle('removed', !keep);
+
+      if (keep) {
+        event.target.style.transform = '';
+      } else {
+        var endX = Math.max(Math.abs(event.velocityX) * moveOutWidth, moveOutWidth);
+        var toX = event.deltaX > 0 ? endX : -endX;
+        var endY = Math.abs(event.velocityY) * moveOutWidth;
+        var toY = event.deltaY > 0 ? endY : -endY;
+        var xMulti = event.deltaX * 0.03;
+        var yMulti = event.deltaY / 80;
+        var rotate = xMulti * yMulti;
+
+        event.target.style.transform = 'translate(' + toX + 'px, ' + (toY + event.deltaY) + 'px) rotate(' + rotate + 'deg)';
+        initCards();
+      }
+    });
+  });
+
+  function createButtonListener(love) {
+    return function (event) {
+      var cards = document.querySelectorAll('.scenario--card:not(.removed)');
+      var moveOutWidth = document.body.clientWidth * 1.5;
+
+      if (!cards.length) return false;
+
+      var card = cards[0];
+
+      card.classList.add('removed');
+
+      if (love) {
+        card.style.transform = 'translate(' + moveOutWidth + 'px, -100px) rotate(-30deg)';
+      } else {
+        card.style.transform = 'translate(-' + moveOutWidth + 'px, -100px) rotate(30deg)';
+      }
+
+      initCards();
+
+      event.preventDefault();
+    };
+  }
+
+  var nopeListener = createButtonListener(false);
+  var loveListener = createButtonListener(true);
+
+  nope.addEventListener('click', nopeListener);
+  love.addEventListener('click', loveListener);
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  var dropdown = document.getElementById('language-youre-learning');
+  var languageInput = '';
+
+  dropdown.addEventListener('change', function() {
+    languageInput = this.value;
+  });
+
+  const languageMap = {
+    'afrikaans': 'af-ZA',
+    'arabic': 'ar-SA',
+    'armenian': 'hy-AM',
+    'azerbaijani': 'az-AZ',
+    'belarusian': 'be-BY',
+    'bosnian': 'bs-BA',
+    'bulgarian': 'bg-BG',
+    'catalan': 'ca-ES',
+    'chinese': 'zh-CN',
+    'croatian': 'hr-HR',
+    'czech': 'cs-CZ',
+    'danish': 'da-DK',
+    'dutch': 'nl-NL',
+    'english': 'en-US',
+    'estonian': 'et-EE',
+    'finnish': 'fi-FI',
+    'french': 'fr-FR',
+    'galician': 'gl-ES',
+    'german': 'de-DE',
+    'greek': 'el-GR',
+    'hebrew': 'he-IL',
+    'hindi': 'hi-IN',
+    'hungarian': 'hu-HU',
+    'icelandic': 'is-IS',
+    'indonesian': 'id-ID',
+    'italian': 'it-IT',
+    'japanese': 'ja-JP',
+    'kannada': 'kn-IN',
+    'kazakh': 'kk-KZ',
+    'korean': 'ko-KR',
+    'latvian': 'lv-LV',
+    'lithuanian': 'lt-LT',
+    'macedonian': 'mk-MK',
+    'malay': 'ms-MY',
+    'marathi': 'mr-IN',
+    'maori': 'mi-NZ',
+    'nepali': 'ne-NP',
+    'norwegian': 'no-NO',
+    'persian': 'fa-IR',
+    'polish': 'pl-PL',
+    'portuguese': 'pt-PT',
+    'romanian': 'ro-RO',
+    'russian': 'ru-RU',
+    'serbian': 'sr-RS',
+    'slovak': 'sk-SK',
+    'slovenian': 'sl-SI',
+    'spanish': 'es-ES',
+    'swahili': 'sw-TZ',
+    'swedish': 'sv-SE',
+    'tagalog': 'tl-PH',
+    'tamil': 'ta-IN',
+    'thai': 'th-TH',
+    'turkish': 'tr-TR',
+    'ukrainian': 'uk-UA',
+    'urdu': 'ur-PK',
+    'vietnamese': 'vi-VN',
+    'welsh': 'cy-GB'
+  };
+
+  const languageWhisperMap = {
+    "afrikaans": "af",
+    "arabic": "ar",
+    "armenian": "hy",
+    "azerbaijani": "az",
+    "belarusian": "be",
+    "bosnian": "bs",
+    "bulgarian": "bg",
+    "catalan": "ca",
+    "chinese": "zh",
+    "croatian": "hr",
+    "czech": "cs",
+    "danish": "da",
+    "dutch": "nl",
+    "english": "en",
+    "estonian": "et",
+    "finnish": "fi",
+    "french": "fr",
+    "galician": "gl",
+    "german": "de",
+    "greek": "el",
+    "hebrew": "he",
+    "hindi": "hi",
+    "hungarian": "hu",
+    "icelandic": "is",
+    "indonesian": "id",
+    "italian": "it",
+    "japanese": "ja",
+    "kannada": "kn",
+    "kazakh": "kk",
+    "korean": "ko",
+    "latvian": "lv",
+    "lithuanian": "lt",
+    "macedonian": "mk",
+    "malay": "ms",
+    "marathi": "mr",
+    "maori": "mi",
+    "nepali": "ne",
+    "norwegian": "no",
+    "persian": "fa",
+    "polish": "pl",
+    "portuguese": "pt",
+    "romanian": "ro",
+    "russian": "ru",
+    "serbian": "sr",
+    "slovak": "sk",
+    "slovenian": "sl",
+    "spanish": "es",
+    "swahili": "sw",
+    "swedish": "sv",
+    "tagalog": "tl",
+    "tamil": "ta",
+    "thai": "th",
+    "turkish": "tr",
+    "ukrainian": "uk",
+    "urdu": "ur",
+    "vietnamese": "vi",
+    "welsh": "cy"
+  };
+const videoElement = document.getElementById("video");
+const startStopButton = document.getElementById("startStopButton");
+const downloadButton = document.getElementById("downloadButton");
+
+let mediaRecorder;
+let recordedChunks = [];
+
+const constraints = {
+    video: {
+        facingMode: "user",
+        width: { ideal: 1280 },
+        height: { ideal: 720 }
+    },
+    audio: true
+};
+
+function handleDataAvailable(event) {
+    if (event.data.size > 0) {
+        recordedChunks.push(event.data);
+    }
+}
+
+async function startRecording() {
+    try {
+        recordedChunks = [];
+        const stream = await navigator.mediaDevices.getUserMedia(constraints);
+        videoElement.srcObject = stream;
+        mediaRecorder = new MediaRecorder(stream);
+        mediaRecorder.ondataavailable = handleDataAvailable;
+        mediaRecorder.start();
+        startStopButton.textContent = "Stop Recording";
+        downloadButton.disabled = true;
+    } catch (err) {
+        console.error("Error accessing camera:", err);
+    }
+}
+
+function stopRecording() {
+    if (mediaRecorder && mediaRecorder.state !== "inactive") {
+        mediaRecorder.stop();
+        startStopButton.textContent = "Start Recording";
+        downloadButton.disabled = false;
+    }
+}
+
+function downloadVideo() {
+    const blob = new Blob(recordedChunks, { type: "video/webm" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "recorded_video.webm";
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+}
+
+startStopButton.addEventListener("click", () => {
+    if (mediaRecorder && mediaRecorder.state === "recording") {
+        stopRecording();
+    } else {
+        startRecording();
+    }
+});
+
+downloadButton.addEventListener("click", downloadVideo);
+
+//Recording audio
+let chunks = [];
+  let recorder;
+  let mediaStream;
+
+  const startButton = document.getElementById('start');
+  const stopButton = document.getElementById('stop');
+
+  startButton.onclick = async function() {
+      mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      recorder = new MediaRecorder(mediaStream);
+      recorder.start();
+      startButton.disabled = true;
+      stopButton.disabled = false;
+
+      recorder.ondataavailable = function(e) {
+          chunks.push(e.data);
+      };
+  };
+
+  stopButton.onclick = function() {
+      recorder.stop();
+      startButton.disabled = false;
+      stopButton.disabled = true;
+
+      recorder.onstop = function() {
+          const blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+          chunks = [];
+          sendToWhisper(blob, languageInput);
+      };
+  };
+
+  async function sendToWhisper(blob, languageInput) {
+      const url = "https://api.openai.com/v1/audio/transcriptions"; 
+      const apiKey = "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"; 
+
+      let formData = new FormData();
+      formData.append("file", blob, 'audio.ogg');
+      formData.append("model", "whisper-1");
+      formData.append("language", languageWhisperMap[languageInput.toLowerCase()] || 'en');
+      console.log()
+
+      const response = await axios.post(url, formData, {
+          headers: {
+              "Authorization": `Bearer ${apiKey}`,
+              "Content-Type": "multipart/form-data"
+          }
+      });
+
+      console.log(response.data.text)
+      const text = response.data.text;
+
+      addMessage(`User: ${text}`, 'user');
+
+      const gptResponse = await getGptResponse(text);
+  }
+
+  async function getGptResponse(prompt) {
+      const user_message = [
+          { "role": "user", "content": `You are a bank clerk, but do not refer to yourself as such. Respond to the following text in ${languageInput} as a bank clerk: ${prompt}` },
+      ];
+      console.log(user_message);
+
+      const headers = {
+          'Authorization': `Bearer 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`,
+          'Content-Type': 'application/json',
+      };
+
+      const api_endpoint = 'https://api.openai.com/v1/chat/completions';
+
+      const response_openai = await fetch(api_endpoint, {
+          method: 'POST',
+          headers: headers,
+          body: JSON.stringify({ messages: user_message, model: "gpt-3.5-turbo" }),
+      });
+      const openai_json = await response_openai.json();
+      const openai_text = openai_json.choices[0].message.content;
+      console.log(openai_text);
+
+      addMessage(`Bank clerk: ${openai_text}`, 'gpt');
+      speakText(openai_text, languageInput);
+
+      return openai_text
+  }
+
+  function addMessage(message, type) {
+      const messageContainer = document.getElementById('message-container');
+      const messageDiv = document.createElement('div');
+      messageDiv.style.padding = '10px';
+      messageDiv.style.borderRadius = '5px';
+      messageDiv.style.marginBottom = '10px';
+      messageDiv.textContent = message;
+
+      if (type === 'user') {
+          messageDiv.style.backgroundColor = 'rgba(0, 123, 255, 0.7)'; 
+          messageDiv.style.color = 'white'; 
+      } else if (type === 'gpt') {
+          messageDiv.style.backgroundColor = 'rgba(255, 255, 255, 0.7)'; 
+          messageDiv.style.color = 'black'; 
+      }
+
+      messageContainer.appendChild(messageDiv);
+
+      messageContainer.scrollTop = messageContainer.scrollHeight;
+      addMessageToTranscript(message, type);
+  }
+
+  function speakText(text, language) {
+    const speechSynthesisUtterance = new SpeechSynthesisUtterance();
+    speechSynthesisUtterance.lang = languageMap[language.toLowerCase()] || 'en-US'; 
+    speechSynthesisUtterance.text = text;
+    window.speechSynthesis.speak(speechSynthesisUtterance);
+  }
+
+  const languageDropdown = document.createElement('select');
+  languageDropdown.style.width = '100px'; 
+  languageDropdown.style.height = '30px'; 
+  languageDropdown.style.border = 'none';
+  languageDropdown.style.borderRadius = '10px';
+  languageDropdown.style.marginBottom = '10px';
+  languageDropdown.style.marginLeft = '5px';
+
+  const languages = ['Afrikaans', 'Arabic', 'Armenian', 'Azerbaijani', 'Belarusian', 'Bosnian', 'Bulgarian', 'Catalan', 'Chinese', 'Croatian', 'Czech', 'Danish', 'Dutch', 'English', 'Estonian', 'Finnish', 'French', 'Galician', 'German', 'Greek', 'Hebrew', 'Hindi', 'Hungarian', 'Icelandic', 'Indonesian', 'Italian', 'Japanese', 'Kannada', 'Kazakh', 'Korean', 'Latvian', 'Lithuanian', 'Macedonian', 'Malay', 'Marathi', 'Maori', 'Nepali', 'Norwegian', 'Persian', 'Polish', 'Portuguese', 'Romanian', 'Russian', 'Serbian', 'Slovak', 'Slovenian', 'Spanish', 'Swahili', 'Swedish', 'Tagalog', 'Tamil', 'Thai', 'Turkish', 'Ukrainian', 'Urdu', 'Vietnamese', 'Welsh']; // Add more languages as needed
+  languages.forEach(lang => {
+    const option = document.createElement('option');
+    option.value = lang.toLowerCase(); 
+    option.text = lang;
+    languageDropdown.appendChild(option);
+  });
+  document.getElementById('transcript').prepend(languageDropdown);
+
+  const languageLabel = document.createElement('label');
+  languageLabel.textContent = 'Translate to: ';
+  document.getElementById('transcript').prepend(languageLabel);
+
+  function createMessageElement(text, type) {
+    const messageElement = document.createElement('div');
+    messageElement.className = 'message ' + type;
+    messageElement.textContent = text;
+
+    const speakImg = document.createElement('img');
+    speakImg.src = 'speak.png'; 
+    speakImg.alt = 'Speak';
+    speakImg.style.width = '20px'; 
+    speakImg.style.height = '20px'; 
+    speakImg.style.marginLeft = '7px'; 
+    speakImg.onclick = function() {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = languageMap[languageInput.toLowerCase()] || 'en-US';
+      window.speechSynthesis.speak(utterance);
+    };
+    messageElement.appendChild(speakImg);
+
+    const translateImg = document.createElement('img');
+    translateImg.src = 'translate.png'; 
+    translateImg.alt = 'Translate';
+    translateImg.style.width = '20px';
+    translateImg.style.height = '20px';
+    translateImg.style.marginLeft = '7px';
+
+    translateImg.onclick = function() {
+      const targetLanguage = languageWhisperMap[languageDropdown.value]; 
+      console.log("Language dropdown value:", languageDropdown.value);
+      console.log("Target language code:", targetLanguage);
+      fetch('https://libretranslate.de/translate', {
+        method: 'POST',
+        body: JSON.stringify({
+          q: text,
+          source: languageWhisperMap[languageInput.toLowerCase()],
+          target: targetLanguage,
+        }),
+        headers: { 'Content-Type': 'application/json' },
+      })
+      .then(response => response.json())
+      .then(data => {
+        const translatedTextElement = document.createElement('div');
+        translatedTextElement.textContent = data.translatedText;
+        messageElement.appendChild(translatedTextElement);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    };
+    messageElement.appendChild(translateImg);
+
+    const explainImg = document.createElement('img');
+    explainImg.src = 'question.png';
+    explainImg.alt = 'Explain';
+    explainImg.style.width = '20px';
+    explainImg.style.height = '20px';
+    explainImg.style.marginLeft = '7px';
+
+    explainImg.onclick = async function() {
+      const message = [
+          { "role": "user", "content": `Analyze whether the given text, which will be in ${languageInput}, has good grammar in that language. Explain in English in 1-2 sentences whether the following text has good grammar or not, including why. If it does not have good grammar, explain why but also include a version of the sentence in ${languageInput} with good grammar and an English translation of it. Here is the text for you to analyze: ${text}` },
+      ];
+
+      const headers = {
+          'Authorization': `Bearer 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`,
+          'Content-Type': 'application/json',
+      };
+
+      const api_endpoint = 'https://api.openai.com/v1/chat/completions';
+
+      const response_openai = await fetch(api_endpoint, {
+          method: 'POST',
+          headers: headers,
+          body: JSON.stringify({ messages: message, model: "gpt-3.5-turbo" }),
+      });
+      const openai_json = await response_openai.json();
+      const openai_text = openai_json.choices[0].message.content;
+      const explanationElement = document.createElement('div');
+      explanationElement.textContent = 'Sentence Analysis: ' + openai_text;
+      messageElement.appendChild(explanationElement);
+    }
+    messageElement.appendChild(explainImg);
+
+    return messageElement;
+}
+
+  function addMessageToTranscript(text, type) {
+    const transcriptElement = document.getElementById('transcript');
+    const messageElement = createMessageElement(text, type);
+    transcriptElement.appendChild(messageElement);
+  }
+
+  function showTranscript() {
+    const transcriptElement = document.getElementById('transcript');
+    const transcriptTitle = document.getElementById('transcript-title');
+    transcriptElement.style.display = 'block';
+    transcriptTitle.style.display = 'block';
+  }
+</script>
+
+</body>
+
+</html>

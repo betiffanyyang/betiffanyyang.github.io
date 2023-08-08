@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inria Sans', sans-serif;
+        background: linear-gradient(to right, #50FFDF 50%, #EFEFEF 50%);
+        background-attachment: fixed;
+        background-position: top 120px left 50%;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: rgba(255, 255, 255, 1); /* Change the background color to opaque white */
+        color: #000000; /* Change the text color to black */
+        height: 50px;
+        padding: 30px 20px;
+        font-family: 'Inria Sans', sans-serif;
+    }
+
+
+    .logo img {
+        width: 220px;
+    }
+
+    .tabs {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        justify-content: flex-end;
+        flex-grow: 1;
+    }
+
+    .tabs li {
+        margin-left: 80px;
+        position: relative; 
+    }
+
+    .tabs li a {
+        text-decoration: none;
+        color: #000000;
+        padding: 5px 10px;
+    }
+
+    .tabs li a:before {
+        content: ""; 
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -10px; 
+        height: 2px;
+        background-color: #50FFDF;
+        border-radius: 2px;
+        visibility: hidden;
+        transform: scaleX(0);
+        transition: all 0.2s ease-in-out;
+    }
+
+    .tabs li a:hover:before {
+        visibility: visible;
+        transform: scaleX(1);
+    }
+
+    .logout-btn {
+        background-color: #50FFDF;
+        color: #000000;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        margin-left: 50px; 
+        margin-right: 50px;
+        border-radius: 10px;
+        font-family: 'Inria Sans', sans-serif;
+    }
+
+    .logout-btn:hover {
+        background-color: #959595;
+    }
+
+    
+    @media (max-width: 768px) {
+        nav {
+            padding: 30px 10px; 
+        }
+        .tabs li {
+            margin-left: 15px; 
+        }
+        .logout-btn {
+            margin-left: 5px; 
+        }
+    }
+
+    @media (max-width: 768px) {
+        .text-field {
+            width: calc(100% - 20px); 
+            padding: 0 10px; 
+            margin-bottom: 15px; 
+        }
+    }
+
+    .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 700px; 
+        padding: 100px 100px; 
+        position: relative;
+    }
+
+    .box {
+        width: calc(100% - 200px); 
+        height: 700px;
+        background: linear-gradient(to right, #FFFFFF 50%, #50FFDF 50%);
+        border-radius: 10px;
+        position: relative;
+    }
+
+    .left-image {
+        position: absolute;
+        top: 50%;
+        left: 150px; 
+        transform: translateY(-50%);
+        max-width: calc(50% - 150px); 
+        height: auto; 
+    }
+
+    @media (max-width: 768px) {
+        .left-image {
+            max-width: 80%; 
+        }
+    }
+
+    .registration-form {
+        position: absolute;
+        top: 50%;
+        left: calc(50% + 30px); 
+        transform: translateY(-50%);
+        width: calc(50% - 150px); 
+        padding: 20px;
+    }
+
+    .registration-form input {
+        width: 100%;
+        padding: 15px;
+        border-radius: 5px;
+        border: none;
+        margin-bottom: 35px; 
+        font-family: 'Inria Sans', sans-serif;
+    }
+
+    .registration-form label {
+        display: block;
+        margin-bottom: 10px; 
+    }
+
+    .registration-form input::placeholder {
+        font-family: 'Inria Sans', sans-serif; 
+    }
+
+    .registration-form button[type="submit"] {
+        background-color: rgb(230, 230, 230);
+        color: #000000;
+        width: 100px;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-family: 'Inria Sans', sans-serif;
+    }
+
+    .registration-form a {
+        display: block;
+        margin-top: 20px; 
+        text-decoration: none;
+        color: #2c8e7c; 
+    }
+
+    .registration-form a:hover {
+        text-decoration: underline; 
+    }
+
+    .registration-form button[type="submit"]:hover {
+    background-color: #ffffff;
+  }
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeakSquid</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="4-removebg-preview.png" alt="Logo">
+        </div>
+        <ul class="tabs">
+            <li><a href="homeOutside.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+        <button class="logout-btn">Register</button>
+    </nav>
+
+    <div class="content">
+        <div class="box">
+            <img src="RegisterPageImage.png" class="left-image" alt="Left Image"> 
+            <div class="registration-form">
+                <h1>Register</h1>
+                <form action="/register" method="POST">
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                    </div>
+                    <div>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div>
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" onclick="redirectToHomeInside()">Register</button>
+                </form>
+                <a href="login.html">Already have an account</a>
+                <!--I changed this to login.html, change it back to /login when your done-->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function redirectToHomeInside() {
+            window.location.href = "homeInside.html";
+        }
+    </script>
+
+</body>
+</html>

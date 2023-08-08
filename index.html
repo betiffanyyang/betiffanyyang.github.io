@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inria+Sans:wght@400;700&display=swap">
+  <title>SpeakSquid</title>
+</head>
+<style>
+  body {
+    font-family: "Inria Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navigation-bar {
+    width: 80px;
+    min-height: calc(100vh - 40px);
+    background-color: #f0f0f0;
+    padding: 20px 0;
+    box-sizing: border-box;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+  }
+
+  .profile-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin-top: 50px;
+  }
+
+  .nav-tabs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+  }
+
+  .nav-tabs a {
+    display: flex; /* Use flexbox to center the content */
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    text-decoration: none;
+    transition: width 0.3s, height 0.3s;
+  }
+  .nav-tabs a img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .home {
+    margin-bottom: 80px;
+    margin-top: 100px;
+  }
+
+  .category {
+    margin-bottom: 30px;
+  }
+
+  .video {
+    margin-top: 360px;
+    padding: 10px;
+  }
+
+  .home:hover img {
+    content: url('Home Icon Hover (1).png');
+  }
+
+  .category:hover img {
+    content: url('Gallery Hover (1).png');
+  }
+
+  .video:hover img {
+    content: url('Record_Hover (1).png');
+  }
+
+  .logo-image {
+        position: fixed;
+        top: 0px;
+        left: 50%;
+        bottom: 30px;
+        transform: translateX(-50%);
+        width: 200px; /* Adjust the width as needed */
+        height: auto;
+    }
+
+
+
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 80px; /* Adjust the width to fit your text length */
+    }
+  }
+
+  @keyframes blink-caret {
+    from,
+    to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: #333;
+    }
+  }
+
+  .content {
+  display: flex;
+  margin-top: 550px;
+}
+
+  .content-column {
+    flex: 1; /* Allow the content column to take remaining space */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+  .typing-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-column {
+  position: absolute;
+  top: 200px;
+  right: 260px;
+  display: flex;
+  align-items: center;
+}
+
+  .resize-image {
+    max-width: 90%; 
+    max-height: 100vh; 
+}
+
+
+@media screen and (max-width: 768px) {
+  .image-column {
+    right: 20px; 
+  }
+}
+.typing-text-container {
+    position: absolute;
+    top: 550px;
+    left: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .typing-text {
+    font-size: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 1.5s steps(20, end), blink-caret 0.5s step-end infinite;
+  }
+
+  .additional-text-container {
+    position: absolute;
+    top: 690px;
+    left: 400px;
+    right: 650px;
+    font-size: 16px;
+  }
+
+  .additional-text {
+    font-size: 16px;
+  }
+
+  .try-out-button {
+    margin-top: 30px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #7AEED9;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 15px 25px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: "Inria Sans", sans-serif;
+  }
+
+  .try-out-button:hover {
+    background-color: #66C2B9;
+  }
+
+  .additional-text-container {
+    position: absolute;
+    top: 690px;
+    left: 400px;
+    right: 650px;
+    font-size: 16px;
+  }
+
+  .additional-text {
+    font-size: 16px;
+  }
+
+  .try-out-button {
+    margin-top: 30px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #7AEED9;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 15px 25px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: "Inria Sans", sans-serif;
+  }
+
+  .try-out-button:hover {
+    background-color: #66C2B9;
+  }
+
+  .additional-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 500px; 
+    margin-left: 150px;
+    margin-right: 150px;
+    height: 900px;
+    background-color: #7AEED9;
+    padding: 20px;
+    text-align: center;
+}
+
+.box-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: calc(50% - 0px);
+    margin-bottom: 30px;
+    text-align: center;
+    box-sizing: border-box; 
+}
+
+.box img {
+    max-width: 10%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.box h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #2B9F8A;
+}
+
+.box p {
+    font-size: 17px;
+    color: #777;
+}
+
+.functionalities-box {
+    background-color: #ffffff;
+    padding: 100px;
+    border-radius: 1px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    text-align: center;
+    width: calc(100% - 500px)
+}
+
+.functionalities-box h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+  
+
+</style>
+
+
+<body>
+  <div class="navigation-bar">
+    <div class="profile-icon">
+      <!-- Put your profile icon here -->
+    </div>
+    <div class="nav-tabs">
+      <div class="home">
+        <a href="index.html"><img src="Home Icon (1).png" alt="Home"></a>
+      </div>
+      <div class="category">
+        <a href="galleryPractice.html"><img src="Gallery (1).png" alt="Category"></a>
+      </div>
+      <div class="video">
+        <a href="selfPractice.html"><img src="Record Icon (1).png" alt="Video" style="width: 50px; height: 50px;"> </a>
+      </div>
+    </div>
+  </div>
+
+<img src="4.png" alt="Logo Image" class="logo-image">
+
+<div class="content">
+  <div class="content-column">
+    <div class="typing-text-container">
+      <div class="typing-text">
+        <span id="typewriter"></span>
+      </div>
+    </div>
+    <div class="additional-text-container">
+      <div class="additional-text">
+        <p>Welcome to SpeakSquid</p>
+        <p>Are you ready to practice the most important part of learning a language--speaking!!</p>
+        <p>SpeakSquid uses AI to generate conversations from the real world that you can practice from the comfort of your home!!</p>
+      </div>
+      <button class="try-out-button" onclick="goToScenarios()">Try Out</button>
+    </div>
+  </div>
+  <div class="image-column">
+    <img src="Home Page Image.png" alt="Your Image" class="resize-image">
+  </div>
+</div>
+
+<div class="additional-section">
+  <div class="functionalities-box">
+      <h1>Functionalities</h1>
+      <div class="box-container">
+          <div class="box">
+              <img src="voice.png" alt="Image 1">
+              <h3>Speaking Practice</h3>
+              <p>Currently available in 57 languages, practice speaking with AI to enhance communication skills in the langauge you are learning</p>
+          </div>
+          <div class="box">
+              <img src="growth.png" alt="Image 2">
+              <h3>Track Progress</h3>
+              <p>SpeakSquid has a video feature that enables you to record and track your progress overtime and motivate you to continue</p>
+          </div>
+      </div>
+      <div class="box-container">
+          <div class="box">
+              <img src="chatting.png" alt="Image 3">
+              <h3>AI Conversations</h3>
+              <p>Powered by AI, SpeakSquid is able to respond with custom prompts to allow personalization of practice</p>
+          </div>
+          <div class="box">
+              <img src="window.png" alt="Image 4">
+              <h3>Corrections and Translations</h3>
+              <p>Transcriptions are provided to enhance the learning experience, including: correcting grammar, translation, and native pronounciation</p>
+          </div>
+      </div>
+  </div>
+</div>
+<script>
+  const goToScenarios = () => {
+    window.location.href = "selfPractice.html";
+  };
+</script>
+
+
+  <script>
+    const sentences = [
+  "Welkom",
+  "أهلاً وسهلاً",
+  "Բարի գալուստ",
+  "Xoş gəlmişsiniz",
+  "Сардэчна запрашаем",
+  "Dobro došli",
+  "Добре дошли",
+  "Benvinguts",
+  "欢迎",
+  "Dobrodošli",
+  "Vítejte",
+  "Velkommen",
+  "Welkom",
+  "Welcome",
+  "Tere tulemast",
+  "Tervetuloa",
+  "Bienvenue",
+  "Benvido",
+  "Willkommen",
+  "Καλώς ήρθατε",
+  "ברוכים הבאים",
+  "स्वागत",
+  "Üdvözöljük",
+  "Velkomin",
+  "Selamat datang",
+  "Benvenuto",
+  "ようこそ",
+  "ಸುಸ್ವಾಗತ",
+  "Қош келдіңіздер",
+  "환영합니다",
+  "Laipni lūdzam",
+  "Sveiki atvykę",
+  "Добредојдовте",
+  "Selamat datang",
+  "स्वागत आहे",
+  "Nau mai",
+  "स्वागत छ",
+  "Velkommen",
+  "خوش آمدید",
+  "Witamy",
+  "Bem-vindo",
+  "Bine ați venit",
+  "Добро пожаловать",
+  "Добродошли",
+  "Vitajte",
+  "Dobrodošli",
+  "Bienvenido",
+  "Karibu",
+  "Välkommen",
+  "Maligayang pagdating",
+  "வரவேற்பு",
+  "ยินดีต้อนรับ",
+  "Hoş geldiniz",
+  "Ласкаво просимо",
+  "خوش آمدید",
+  "Chào mừng bạn",
+  "Croeso"
+];
+    const typewriter = document.getElementById("typewriter");
+
+    let currentSentenceIndex = 0;
+    let isErasing = false;
+
+    typewriter.textContent = "";
+
+    function typewriterEffect() {
+      const sentence = sentences[currentSentenceIndex];
+      const currentText = typewriter.textContent;
+
+      if (!isErasing) {
+        typewriter.textContent = sentence.substring(0, currentText.length + 1);
+
+        if (currentText === sentence) {
+          isErasing = true;
+          setTimeout(typewriterEffect, 1500); 
+        } else {
+          setTimeout(typewriterEffect, 100);
+        }
+      } else {
+        typewriter.textContent = sentence.substring(0, currentText.length - 1);
+
+        if (currentText === "") {
+          isErasing = false;
+          currentSentenceIndex = (currentSentenceIndex + 1) % sentences.length;
+        }
+
+        setTimeout(typewriterEffect, 50); 
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      typewriterEffect();
+    });
+
+</script>
+
+
+</body>
+
+</html>
